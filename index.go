@@ -123,6 +123,16 @@ func main() {
 	simpleSlice := []int{6, 7, 8, 9, 10, 11}
 	fmt.Println(simpleSlice, "simpleSlice")
 
+	testSlice := make([]int, 5)
+	fmt.Println("make", testSlice)
+
+	//Structs and Interfaces
+	myCar := Car{"Toyota", "Camry", 2019}
+	myCar.Start()
+
+	carService := Car{"Toyota", "Camry", 2019}
+	cabService(carService)
+
 } // main func end ---
 
 /* Declaring a function: To declare a function in Go, use the func keyword, followed by the name of the function,
@@ -152,4 +162,36 @@ func sumOfNumbers(nums ...int) int {
 		totalSum += eachNum
 	}
 	return totalSum
+}
+
+//Structs and Interfaces
+/* In Go, a struct is a user-defined data type that can be used to group together related data fields.
+A struct is defined using the struct keyword, followed by a set of fields enclosed in curly braces. */
+
+type Driver interface {
+	picup()
+	drop()
+}
+
+type Car struct {
+	Make  string
+	Model string
+	Year  int
+}
+
+func (c Car) Start() {
+	fmt.Println("The car is starting.")
+}
+
+func (c Car) picup() {
+	fmt.Println("Picked up!")
+}
+
+func (c Car) drop() {
+	fmt.Println("drop!")
+}
+
+func cabService(d Driver) {
+	d.picup()
+	d.drop()
 }
